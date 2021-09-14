@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emp_info</title>
+</head>
+<body>
+
+
+<form method="post" action="search">
+    {% csrf_token %}
+            <tr><td><input name="name"></td>
+                <td><button type="submit">Search</button> </td></tr>
+    </form>
+{% if employee %}
+    <table border="1" >
+
+       <thead>
+
+        <th> ID</th>
+        <th> Name</th>
+        <th> Email</th>
+        <th> Contact</th>
+
+        </thead>
+
+        {%for i in employee %}
+
+        <tr align="center">
+            <td>{{i.eid}}</td>
+            <td>{{i.ename}}</td>
+            <td>{{i.eemail}}</td>
+            <td>{{i.econtact}}</td>
+            <td>
+                <a href="edit/{{i.id}}">Edit</a>
+            </td>
+            <td>
+                <a href="delete/{{i.id}}">Delete</a>
+            </td>
+        </tr>
+        {%endfor%}
+
+
+
+    </table>
+
+
+{%else%}
+<p>New employee enrolled/Data not found, Go to show page</p>
+{%endif%}
+
+</body>
+</html>
